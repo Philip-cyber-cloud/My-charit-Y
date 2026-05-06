@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>White Fox Charity | Making a Difference Across America</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --orange: #E8521A;
+    --orange-light: #FF6B35;
+    --dark: #111111;
+    --mid: #2a2a2a;
+    --light: #f7f5f2;
+    --white: #ffffff;
+    --green: #2D7A4F;
+    --gold: #C89B3C;
+    --text-muted: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(17,17,17,0.92);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--white); letter-spacing: 1px;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-cta {
+    background: var(--orange); color: var(--white);
+    border: none; padding: 10px 24px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+    font-weight: 600; cursor: pointer; letter-spacing: 0.5px;
+    text-transform: uppercase; transition: background 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--orange-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #0d1a12 100%);
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; text-align: center;
+    padding: 120px 24px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1600&q=80') center/cover no-repeat;
+    opacity: 0.18;
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--orange);
+    color: var(--orange); font-size: 0.75rem;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 6px 18px; margin-bottom: 28px;
+    position: relative; animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900; color: var(--white);
+    line-height: 1.1; max-width: 860px;
+    position: relative; animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero h1 em { color: var(--orange); font-style: normal; }
+  .hero p {
+    color: rgba(255,255,255,0.65); font-size: 1.1rem;
+    max-width: 520px; margin: 24px auto 40px;
+    line-height: 1.7; position: relative;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    position: relative; animation: fadeUp 1s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--orange); color: var(--white);
+    padding: 16px 40px; font-size: 0.95rem;
+    font-weight: 700; border: none; cursor: pointer;
+    text-decoration: none; letter-spacing: 0.5px;
+    transition: transform 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.4); color: var(--white);
+    padding: 14px 36px; font-size: 0.95rem;
+    font-weight: 600; background: transparent; cursor: pointer;
+    text-decoration: none; letter-spacing: 0.5px;
+    transition: border-color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--white); transform: translateY(-2px); }
+
+  /* ── STATS ── */
+  .stats {
+    background: var(--white);
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-bottom: 3px solid var(--orange);
+  }
+  .stat-item {
+    padding: 48px 32px; text-align: center;
+    border-right: 1px solid #eee;
+    transition: background 0.2s;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item:hover { background: #fdf9f7; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 900;
+    color: var(--orange); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.85rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-top: 8px; font-weight: 500;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; min-height: 560px;
+  }
+  .about-img {
+    background: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=900&q=80') center/cover no-repeat;
+    min-height: 400px;
+  }
+  .about-content {
+    background: var(--dark); color: var(--white);
+    padding: 80px 60px; display: flex;
+    flex-direction: column; justify-content: center;
+  }
+  .section-tag {
+    font-size: 0.72rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--orange);
+    font-weight: 600; margin-bottom: 16px;
+  }
+  .about-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900;
+    line-height: 1.2; margin-bottom: 24px;
+  }
+  .about-content p {
+    color: rgba(255,255,255,0.7); line-height: 1.8;
+    font-size: 1rem; margin-bottom: 16px;
+  }
+  .about-list { list-style: none; margin: 20px 0 32px; }
+  .about-list li {
+    color: rgba(255,255,255,0.8); padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.95rem; display: flex; align-items: center; gap: 10px;
+  }
+  .about-list li::before {
+    content: '→'; color: var(--orange); font-weight: 700;
+  }
+
+  /* ── PROGRAMS ── */
+  .programs { padding: 100px 40px; background: var(--light); }
+  .section-header { text-align: center; margin-bottom: 64px; }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem; font-weight: 900;
+    color: var(--dark); margin-bottom: 16px;
+  }
+  .section-header p {
+    color: var(--text-muted); max-width: 500px;
+    margin: 0 auto; line-height: 1.7;
+  }
+  .programs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; max-width: 1100px; margin: 0 auto;
+  }
+  .program-card {
+    background: var(--white); padding: 48px 36px;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .program-card:hover { transform: translateY(-4px); }
+  .program-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: var(--orange);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .program-card:hover::before { transform: scaleX(1); }
+  .program-icon { font-size: 2.2rem; margin-bottom: 20px; }
+  .program-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    margin-bottom: 12px; color: var(--dark);
+  }
+  .program-card p {
+    color: var(--text-muted); line-height: 1.7; font-size: 0.92rem;
+  }
+
+  /* ── IMPACT ── */
+  .impact {
+    background: var(--dark); color: var(--white);
+    padding: 100px 40px; text-align: center;
+  }
+  .impact h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem; font-weight: 900; margin-bottom: 16px;
+  }
+  .impact > p {
+    color: rgba(255,255,255,0.6); max-width: 500px;
+    margin: 0 auto 60px; line-height: 1.7;
+  }
+  .impact-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; max-width: 1000px; margin: 0 auto;
+  }
+  .impact-item {
+    background: rgba(255,255,255,0.04);
+    padding: 40px 24px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .impact-item .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900; color: var(--orange);
+  }
+  .impact-item .label {
+    font-size: 0.8rem; color: rgba(255,255,255,0.5);
+    text-transform: uppercase; letter-spacing: 1px; margin-top: 8px;
+  }
+
+  /* ── DONATE ── */
+  .donate-section {
+    padding: 100px 40px;
+    background: linear-gradient(135deg, #fdf9f5 0%, #fff8f2 100%);
+  }
+  .donate-wrapper {
+    max-width: 600px; margin: 0 auto;
+    background: var(--white); padding: 60px 56px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    border-top: 4px solid var(--orange);
+  }
+  .donate-wrapper h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900;
+    margin-bottom: 8px;
+  }
+  .donate-wrapper > p {
+    color: var(--text-muted); margin-bottom: 36px; line-height: 1.6;
+  }
+  .amount-options {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 10px; margin-bottom: 20px;
+  }
+  .amount-btn {
+    border: 2px solid #e8e4e0; background: var(--white);
+    padding: 14px; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark);
+  }
+  .amount-btn:hover, .amount-btn.active {
+    border-color: var(--orange); background: var(--orange);
+    color: var(--white);
+  }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block; font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin-bottom: 8px; color: var(--mid);
+  }
+  .form-group input {
+    width: 100%; padding: 14px 16px;
+    border: 2px solid #e8e4e0; font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s; outline: none;
+    background: var(--white); color: var(--dark);
+  }
+  .form-group input:focus { border-color: var(--orange); }
+  .form-group input::placeholder { color: #bbb; }
+  .donate-btn {
+    width: 100%; background: var(--green); color: var(--white);
+    border: none; padding: 18px; font-size: 1rem;
+    font-weight: 700; cursor: pointer; letter-spacing: 1px;
+    text-transform: uppercase; font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s, transform 0.2s; margin-top: 8px;
+  }
+  .donate-btn:hover { background: #236040; transform: translateY(-2px); }
+  .secure-note {
+    text-align: center; margin-top: 16px;
+    font-size: 0.8rem; color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+
+  /* ── LOCATION ── */
+  .location-section {
+    background: var(--white); padding: 80px 40px;
+  }
+  .location-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: start;
+  }
+  .location-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; margin-bottom: 24px;
+  }
+  .contact-item {
+    display: flex; gap: 16px; margin-bottom: 28px;
+    align-items: flex-start;
+  }
+  .contact-icon {
+    width: 44px; height: 44px; background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-label {
+    font-size: 0.75rem; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--text-muted);
+    font-weight: 600; margin-bottom: 4px;
+  }
+  .contact-value {
+    font-size: 0.97rem; color: var(--dark);
+    font-weight: 500; line-height: 1.5;
+  }
+  .contact-value a {
+    color: var(--dark); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-value a:hover { color: var(--orange); }
+  .map-placeholder {
+    background: #e8e4e0; height: 320px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; color: var(--text-muted);
+    position: relative; overflow: hidden;
+  }
+  .map-placeholder iframe {
+    width: 100%; height: 100%; border: none;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a0a0a; color: rgba(255,255,255,0.6);
+    padding: 60px 40px 32px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px; max-width: 1000px; margin: 0 auto 48px;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900; color: var(--white);
+    margin-bottom: 16px;
+  }
+  .footer-logo span { color: var(--orange); }
+  .footer-desc {
+    line-height: 1.7; font-size: 0.9rem;
+    max-width: 300px; margin-bottom: 24px;
+  }
+  .social-links { display: flex; gap: 12px; }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.6); text-decoration: none;
+    font-size: 0.8rem; transition: all 0.2s;
+  }
+  .social-link:hover {
+    border-color: var(--orange); color: var(--orange);
+    background: rgba(232,82,26,0.1);
+  }
+  .footer-col h4 {
+    color: var(--white); font-size: 0.8rem;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 20px; font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.5); text-decoration: none;
+    font-size: 0.88rem; transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--orange); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 28px; text-align: center;
+    font-size: 0.8rem; max-width: 1000px; margin: 0 auto;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .stats { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid #eee; }
+    .about { grid-template-columns: 1fr; }
+    .about-img { min-height: 260px; }
+    .about-content { padding: 48px 28px; }
+    .programs { padding: 60px 20px; }
+    .programs-grid { grid-template-columns: 1fr; }
+    .impact { padding: 60px 20px; }
+    .impact-grid { grid-template-columns: repeat(2, 1fr); }
+    .donate-section { padding: 60px 20px; }
+    .donate-wrapper { padding: 36px 24px; }
+    .location-inner { grid-template-columns: 1fr; gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">White<span>Fox</span> Charity</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#donate" class="nav-cta">Donate Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🇺🇸 Serving Communities Across America</div>
+  <h1>Changing Lives,<br><em>One Family</em> at a Time</h1>
+  <p>White Fox Charity provides education, food relief, and community development programs to underserved families across the United States.</p>
+  <div class="hero-btns">
+    <a href="#donate" class="btn-primary">Donate Now</a>
+    <a href="#about" class="btn-outline">Our Story</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">500+</div>
+    <div class="stat-label">People Helped</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">$2M+</div>
+    <div class="stat-label">Raised in Donations</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">20+</div>
+    <div class="stat-label">Active Projects</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img"></div>
+  <div class="about-content">
+    <div class="section-tag">About Us</div>
+    <h2>Building Stronger American Communities</h2>
+    <p>White Fox Charity is a 501(c)(3) nonprofit organization headquartered in New York, NY. We work in partnership with local leaders and volunteers across America to tackle poverty, hunger, and lack of educational opportunity.</p>
+    <p>Since our founding, we've served families in over 20 states, bringing measurable, lasting change to the communities that need it most.</p>
+    <ul class="about-list">
+      <li>Education & Scholarship Programs</li>
+      <li>Food Relief & Hunger Outreach</li>
+      <li>Community Development Initiatives</li>
+      <li>Youth Mentorship Programs</li>
+    </ul>
+    <a href="#donate" class="btn-primary">Support Our Mission</a>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="section-header">
+    <div class="section-tag">What We Do</div>
+    <h2>Our Programs</h2>
+    <p>Every initiative is designed to create lasting impact in underserved American communities.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card">
+      <div class="program-icon">📚</div>
+      <h3>Education Support</h3>
+      <p>Scholarships, school supplies, tutoring, and after-school programs for students in low-income families across the U.S.</p>
+    </div>
+    <div class="program-card">
+      <div class="program-icon">🍽️</div>
+      <h3>Food Relief</h3>
+      <p>Partnering with local food banks and shelters to deliver nutritious meals to families facing food insecurity nationwide.</p>
+    </div>
+    <div class="program-card">
+      <div class="program-icon">🏘️</div>
+      <h3>Community Development</h3>
+      <p>Infrastructure improvements, job-skills training, and neighborhood revitalization projects across underserved U.S. cities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="section-tag">Our Impact</div>
+  <h2>Numbers That Matter</h2>
+  <p>Real results, transparently reported — so you know exactly where your dollars go.</p>
+  <div class="impact-grid">
+    <div class="impact-item">
+      <div class="num">$2M+</div>
+      <div class="label">Total Raised (USD)</div>
+    </div>
+    <div class="impact-item">
+      <div class="num">500+</div>
+      <div class="label">Lives Impacted</div>
+    </div>
+    <div class="impact-item">
+      <div class="num">20+</div>
+      <div class="label">U.S. Projects</div>
+    </div>
+    <div class="impact-item">
+      <div class="num">15</div>
+      <div class="label">States Served</div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate-section" id="donate">
+  <div class="donate-wrapper">
+    <div class="section-tag">Make a Difference</div>
+    <h2>Donate Now</h2>
+    <p>Your contribution in US dollars goes directly to programs that transform lives across America.</p>
+
+    <div class="amount-options">
+      <button class="amount-btn" onclick="selectAmount(this, '25')">$25</button>
+      <button class="amount-btn active" onclick="selectAmount(this, '50')">$50</button>
+      <button class="amount-btn" onclick="selectAmount(this, '100')">$100</button>
+      <button class="amount-btn" onclick="selectAmount(this, '250')">$250</button>
+      <button class="amount-btn" onclick="selectAmount(this, '500')">$500</button>
+      <button class="amount-btn" onclick="selectAmount(this, '')">Other</button>
+    </div>
+
+    <div class="form-group">
+      <label>Your Email Address</label>
+      <input type="email" id="email" placeholder="you@example.com" />
+    </div>
+    <div class="form-group">
+      <label>Donation Amount (USD $)</label>
+      <input type="number" id="amount" placeholder="Enter amount in USD" value="50" />
+    </div>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="name" placeholder="Jane Doe" />
+    </div>
+    <button class="donate-btn" onclick="handleDonate()">🔒 Donate Securely</button>
+    <div class="secure-note">🔐 SSL encrypted &nbsp;|&nbsp; 501(c)(3) Tax-Deductible &nbsp;|&nbsp; USD payments</div>
+  </div>
+</section>
+
+<!-- CONTACT / LOCATION -->
+<section class="location-section" id="contact">
+  <div class="location-inner">
+    <div>
+      <div class="section-tag">Find Us</div>
+      <h2>Our Location &amp; Contact</h2>
+
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Address</div>
+          <div class="contact-value">350 Fifth Avenue, Suite 4200<br>New York, NY 10118, USA</div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">
+            <a href="tel:+12547727838">+1 (254) 772-7838</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">
+            <a href="mailto:hello@whitefoxcharity.org">hello@whitefoxcharity.org</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">✈️</div>
+        <div>
+          <div class="contact-label">Telegram</div>
+          <div class="contact-value">
+            <a href="https://t.me/tTt_Daillyhive" target="_blank">t.me/tTt_Daillyhive</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">🕒</div>
+        <div>
+          <div class="contact-label">Office Hours</div>
+          <div class="contact-value">Mon – Fri: 9:00 AM – 5:00 PM (EST)</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="map-placeholder">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-73.9874689!3d40.7484405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+          allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">White<span>Fox</span> Charity</div>
+      <p class="footer-desc">A 501(c)(3) nonprofit dedicated to education, food relief, and community development across the United States.</p>
+      <div class="social-links">
+        <a href="https://t.me/tTt_Daillyhive" target="_blank" class="social-link" title="Telegram">✈</a>
+        <a href="tel:+12547727838" class="social-link" title="Call Us">📞</a>
+        <a href="mailto:hello@whitefoxcharity.org" class="social-link" title="Email">✉</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#donate">Donate</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+12547727838">+1 (254) 772-7838</a></li>
+        <li><a href="https://t.me/tTt_Daillyhive" target="_blank">Telegram</a></li>
+        <li><a href="mailto:hello@whitefoxcharity.org">Email Us</a></li>
+        <li>New York, NY 10118</li>
+        <li>Mon–Fri, 9AM–5PM EST</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 White Fox Charity. All rights reserved. &nbsp;|&nbsp; EIN: 12-3456789 &nbsp;|&nbsp; 501(c)(3) Nonprofit
+  </div>
+</footer>
+
+<script>
+  function selectAmount(btn, val) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (val) document.getElementById('amount').value = val;
+    else { document.getElementById('amount').value = ''; document.getElementById('amount').focus(); }
+  }
+
+  function handleDonate() {
+    const email = document.getElementById('email').value;
+    const amount = document.getElementById('amount').value;
+    const name = document.getElementById('name').value;
+    if (!email || !amount || !name) {
+      alert('Please fill in all fields before donating.');
+      return;
+    }
+    alert(`Thank you, ${name}! Your donation of $${parseFloat(amount).toFixed(2)} USD is being processed securely. A receipt will be sent to ${email}.`);
+  }
+</script>
+</body>
+</html>
